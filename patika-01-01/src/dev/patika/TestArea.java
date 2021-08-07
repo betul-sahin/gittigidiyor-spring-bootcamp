@@ -12,5 +12,6 @@ public class TestArea {
         System.out.println(cylinder.getColor() + " Cylinder area is " + cylinder.getArea());
         System.out.println(cylinder.getColor() + " Cylinder volume is " + cylinder.getVolume());
 
+        System.out.println("Test...");
     }
 }

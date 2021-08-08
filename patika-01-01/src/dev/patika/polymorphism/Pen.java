@@ -1,6 +1,6 @@
 package dev.patika.polymorphism;
 
-public class Pen {
+public final class Pen {
 
     public void draw(Shape s) {
         if (s instanceof Circle) {

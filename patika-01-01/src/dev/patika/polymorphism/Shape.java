@@ -1,6 +1,6 @@
 package dev.patika.polymorphism;
 
-public class Shape {
+public abstract class Shape {
     private String color;
 
     public Shape(String color) {
@@ -18,8 +18,5 @@ public class Shape {
         this.color = color;
     }
 
-    public double getArea(){
-        System.out.println("There is no definite shape for calculating area...");
-        return 0;
-    }
+    public abstract double getArea();
 }

@@ -4,6 +4,7 @@ public class TestPoly {
     public static void main(String[] args) {
 
         Pen pen = new Pen();
+       // Shape shape = new Shape();
 
         Shape s = new Circle(10.0, "Green");
         pen.draw(s);

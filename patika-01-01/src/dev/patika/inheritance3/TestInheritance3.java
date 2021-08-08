@@ -5,16 +5,16 @@ public class TestInheritance3 {
 
         Pen pen = new Pen();
 
-        Shape circle = new Circle(10.0 , "Blue");
-        pen.draw((Circle) circle);
-        pen.changeColor("Aqua", (Circle) circle);
-
-
-        Shape rectangle = new Rectangle("Yellow", 10, 10);
-        if(rectangle instanceof Circle){
-            pen.draw((Circle) rectangle);
-            pen.changeColor("Brown", (Circle) rectangle);
+        Shape shape1 = new Circle(10.0, "Blue");
+        if (shape1 instanceof Circle) {
+            pen.draw((Circle) shape1);
+            pen.changeColor("Aqua", (Circle) shape1);
         }
 
+        Shape shape2 = new Rectangle("Yellow", 10, 10);
+        if (shape2 instanceof Circle) {
+            pen.draw((Circle) shape2);
+            pen.changeColor("Brown", (Circle) shape2);
+        }
     }
 }

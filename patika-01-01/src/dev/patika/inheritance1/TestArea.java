@@ -1,4 +1,4 @@
-package dev.patika;
+package dev.patika.inheritance1;
 
 import java.text.DecimalFormat;
 
@@ -12,6 +12,5 @@ public class TestArea {
         System.out.println(cylinder.getColor() + " Cylinder area is " + cylinder.getArea());
         System.out.println(cylinder.getColor() + " Cylinder volume is " + cylinder.getVolume());
 
-        System.out.println("Test...");
     }
 }

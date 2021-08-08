@@ -1,4 +1,4 @@
-package dev.patika;
+package dev.patika.inheritance1;
 
 import java.util.Objects;
 

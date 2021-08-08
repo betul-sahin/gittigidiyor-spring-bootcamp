@@ -11,8 +11,10 @@ public class TestInheritance3 {
 
 
         Shape rectangle = new Rectangle("Yellow", 10, 10);
-        pen.draw((Circle) rectangle);
-        pen.changeColor("Brown", (Circle) rectangle);
+        if(rectangle instanceof Circle){
+            pen.draw((Circle) rectangle);
+            pen.changeColor("Brown", (Circle) rectangle);
+        }
 
     }
 }

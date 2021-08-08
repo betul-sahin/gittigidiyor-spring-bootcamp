@@ -1,10 +1,16 @@
 package dev.patika.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Vehicle {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private int v_year;
     private String v_model;
     private String v_plate;
@@ -17,8 +23,10 @@ public class Vehicle {
 
     public Vehicle(){}
 
+    @ManyToMany
     private List<Accident> accidents = new ArrayList<>();
 
+    @ManyToOne
     private Customer customer;
 
     public int getV_year() {

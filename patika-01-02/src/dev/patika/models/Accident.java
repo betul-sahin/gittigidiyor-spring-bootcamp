@@ -1,12 +1,18 @@
 package dev.patika.models;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private LocalDate accident_date;
 
+    @ManyToMany(mappedBy = "accidents")
     private List<Vehicle> vehicleList = new ArrayList<>();
 
     public Accident(LocalDate accident_date) {

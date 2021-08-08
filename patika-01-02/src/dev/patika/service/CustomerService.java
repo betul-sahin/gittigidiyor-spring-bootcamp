@@ -1,6 +1,7 @@
 package dev.patika.service;
 
 import dev.patika.models.Customer;
+import dev.patika.models.Vehicle;
 import dev.patika.repository.CrudRepository;
 import dev.patika.repository.CustomerRepository;
 import dev.patika.utils.EntityManagerUtils;
@@ -24,33 +25,90 @@ public class CustomerService implements CrudRepository<Customer>, CustomerReposi
 
     @Override
     public void saveToDatabase(Customer customer) {
-        em.getTransaction().begin();
-        em.persist(customer);
-        em.getTransaction().commit();
+        try{
+            em.getTransaction().begin();
+            em.persist(customer);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            EntityManagerUtils.closeEntityManager(em);
+        }
     }
 
     @Override
-    public void deleteFromDatabase(Customer object) {
+    public void deleteFromDatabase(Customer customer) {
+        try {
+            em.getTransaction().begin();
 
+            Customer foundCustomer = em.createQuery("from Customer c WHERE c.ssid =:ssid", Customer.class).setParameter("ssid", customer.getSsid()).getSingleResult();
+            em.remove(foundCustomer);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            EntityManagerUtils.closeEntityManager(em);
+        }
     }
 
     @Override
     public void deleteFromDatabase(int id) {
+        try {
+            em.getTransaction().begin();
 
+            Customer foundCustomer = em.find(Customer.class, id);
+            em.remove(foundCustomer);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            EntityManagerUtils.closeEntityManager(em);
+        }
     }
 
     @Override
-    public void updateOnDatabase(Customer object) {
+    public void updateOnDatabase(Customer customer, int id) {
+        try {
+            em.getTransaction().begin();
 
+            Customer foundCustomer = em.find(Customer.class, id);
+            foundCustomer.setAddress(customer.getAddress());
+            foundCustomer.setName(customer.getName());
+            foundCustomer.setSsid(customer.getSsid());
+            em.merge(foundCustomer);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            EntityManagerUtils.closeEntityManager(em);
+        }
     }
 
     @Override
     public void deleteCustomerFromDatabase(long ssid) {
-        em.getTransaction().begin();
+        try {
+            em.getTransaction().begin();
 
-        Customer customer = em.createQuery("from Customer c WHERE c.ssid =:ssid", Customer.class).setParameter("ssid", ssid).getSingleResult();
-        em.remove(customer);
+            Customer customer = em.createQuery("from Customer c WHERE c.ssid =:ssid", Customer.class).setParameter("ssid", ssid).getSingleResult();
+            em.remove(customer);
 
-        em.getTransaction().commit();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            EntityManagerUtils.closeEntityManager(em);
+        }
+    }
+
+    @Override
+    public List<Vehicle> findVehiclesOfCustomer(long ssid) {
+        return findCustomerBySSID(ssid).getVehicleList();
+    }
+
+    public Customer findCustomerBySSID(long ssid){
+        return em.createQuery("from Customer c where c.ssid=:custSsid", Customer.class).setParameter("custSsid", ssid).getSingleResult();
     }
 }

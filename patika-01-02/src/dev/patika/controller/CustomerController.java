@@ -27,8 +27,12 @@ public class CustomerController {
         customerService.deleteCustomerFromDatabase(ssid);
     }
 
+    public void updateCustomer(Customer customer, int id){
+        customerService.updateOnDatabase(customer, id);
+    }
+
     public List<Vehicle> findVehiclesOfCustomer(long ssid){
-        return null;
+        return customerService.findVehiclesOfCustomer(ssid);
     }
 
 }

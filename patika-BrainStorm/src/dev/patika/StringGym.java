@@ -6,8 +6,11 @@ public class StringGym {
 
         String s;
         boolean isOk=true;
-        if (isOk) s = StringGym.s+"";
-        else s="";
+        if (isOk)
+                s = StringGym.s+"";
+            else if(""=="")
+                s="";
+
         s.concat("Hello ");
         s.concat("World");
         s.toUpperCase();

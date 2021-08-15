@@ -13,6 +13,7 @@ import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @RestController
 @RequestMapping("/api")
@@ -70,8 +71,8 @@ public class HelloController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<List<Student>> addStudent(@RequestBody Student student){
-        students.add(student);
+    public ResponseEntity<List<Student>> addStudent(@RequestBody List<Student> studentList){
+        studentList.stream().forEach(s -> students.add(s));
         return ResponseEntity.ok().body(students);
     }
 

@@ -21,7 +21,7 @@ public class HelloController {
     List<Student> students = new ArrayList<>();
 
     // End-point
-    @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
     public StringResponse sayHello(@RequestParam(required = false ,defaultValue = "Hasan") String name, @PathParam("year") int year){
         return  new StringResponse("Hello " + name + " from " + year);
     }
@@ -78,7 +78,7 @@ public class HelloController {
 
     @GetMapping("*")
     public ResponseEntity<String> fallBackMethod(){
-        return new ResponseEntity<>("There is no ennpoint like that", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("There is no endpoint like that", HttpStatus.NOT_FOUND);
     }
 
     // http://localhost:8080/sum?num1=10&num2=20

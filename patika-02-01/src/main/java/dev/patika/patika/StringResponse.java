@@ -10,6 +10,9 @@ public class StringResponse {
         this.response = response;
     }
 
+    public StringResponse() {
+    }
+
     public String getResponse() {
         return response;
     }

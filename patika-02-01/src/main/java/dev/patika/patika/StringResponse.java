@@ -1,5 +1,8 @@
 package dev.patika.patika;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class StringResponse {
     private String response;
 

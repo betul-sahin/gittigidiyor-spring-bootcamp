@@ -45,4 +45,21 @@ public class EmployeeController {
         employeeService.deleteById(id);
         return "Deleted...";
     }
+
+    @GetMapping("/getNumberOfEmployees")
+    public String getNumberOfEmployees(){
+        int empNumber = employeeService.getNumberOfEmployees();
+        return "Total employee number on DB : " + empNumber ;
+    }
+
+    @GetMapping("/getAgesWithGrouping")
+    public List<?> getAgesWithGrouping(){
+        return employeeService.getAgesWithGrouping();
+    }
+
+    @GetMapping("/getAgesWithGroupingWithNativeQuery")
+    public List<?> getAgesWithGroupingWithNativeQuery(){
+        return employeeService.getAgesWithGroupingWithNativeQuery();
+    }
+
 }

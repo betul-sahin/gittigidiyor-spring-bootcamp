@@ -1,14 +1,13 @@
-package dev.patika.patika0202.dao;
-
-import org.springframework.stereotype.Repository;
+package dev.patika.patika0301.service;
 
 import java.util.List;
 
-@Repository
-public interface BaseDAO<T> {
+public interface BaseService<T> {
+
     List<T> findAll();
     T findById(int id);
     T save(T object);
     void deleteById(int id);
     T update(T object);
+
 }

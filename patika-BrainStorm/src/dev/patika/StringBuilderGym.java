@@ -1,5 +1,10 @@
 package dev.patika;
 
+/*
+    1- StringBuilder --> Mutable (değiştirilebilir - not thread-safe)
+    2- StringBuffer --> Mutable (değiştirilebilir - thread-safe)
+    String --> Immutable (değiştirilemez)
+ */
 public class StringBuilderGym {
     public static void main(String[] args) {
 
@@ -12,7 +17,7 @@ public class StringBuilderGym {
         builder1.append(hello);
         builder2.append(builder1).append(" world");
 
-        System.out.println(builder1);
-        System.out.println(builder2);
+        System.out.println(builder1); // hello
+        System.out.println(builder2); // hello world
     }
 }

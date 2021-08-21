@@ -37,4 +37,9 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO<Employee>{
     public void deleteById(int id) {
 
     }
+
+    @Override
+    public Employee update(Employee object) {
+        return null;
+    }
 }

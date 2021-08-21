@@ -1,7 +1,7 @@
-package dev.patika.patika0202.contoller;
+package dev.patika.patika0301.controller;
 
-import dev.patika.patika0202.model.Employee;
-import dev.patika.patika0202.service.EmployeeService;
+import dev.patika.patika0301.entity.Employee;
+import dev.patika.patika0301.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,4 +35,14 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.findById(id), HttpStatus.OK);
     }
 
+    @PutMapping("/employees")
+    public Employee updateEmployee(@RequestBody Employee employee){
+        return employeeService.update(employee);
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public String deleteEmployeeById(@PathVariable int id){
+        employeeService.deleteById(id);
+        return "Deleted...";
+    }
 }

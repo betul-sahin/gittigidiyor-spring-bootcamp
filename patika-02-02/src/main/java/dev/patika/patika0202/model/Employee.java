@@ -25,6 +25,10 @@ public class Employee {
     public Employee() {
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getFullName() {
         return fullName;
     }

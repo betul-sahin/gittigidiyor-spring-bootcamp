@@ -1,5 +1,8 @@
 package dev.patika.patika;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,12 +22,24 @@ import java.util.function.Consumer;
 @RequestMapping("/api")
 public class HelloController {
 
+    private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
+
+    @Value("${developer.name1:Ali}")
+    private String developerName;
+
+    @Value("${developer.email}")
+    private String developerMail;
+
+    @Value("${developer.phone}")
+    private String developerPhone;
+
     List<Student> students = new ArrayList<>();
 
     // End-point
     @RequestMapping(value = "/hello", method = RequestMethod.GET, produces = MediaType.APPLICATION_XML_VALUE)
     public StringResponse sayHello(@RequestParam(required = false ,defaultValue = "Hasan") String name, @PathParam("year") int year){
-        return  new StringResponse("Hello " + name + " from " + year);
+        logger.info("Developer name : {} , Email : {}", developerName, developerMail);
+        return  new StringResponse("Hello " + developerName + " , Phone : " + developerPhone + " from " + year);
     }
 
     @GetMapping("/hello/{name}/{age}")

@@ -1,0 +1,38 @@
+package dev.patika.patika0304.controller;
+
+import dev.patika.patika0304.model.Employee;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@Controller
+@RequestMapping("/api")
+public class EmployeeController {
+
+    private List<Employee> employeeList;
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
+
+
+    @PostConstruct
+    private void loadData(){
+        employeeList = Arrays.asList(
+                new Employee(atomicInteger.incrementAndGet(),"Ali Veli", 36, 4343.32),
+                new Employee(atomicInteger.incrementAndGet(),"Ayşe Kaya", 26, 4643.32),
+                new Employee(atomicInteger.incrementAndGet(),"Hasan Huseyin", 45, 6743.32)
+        );
+    }
+
+    @GetMapping("/employees")
+    public String listOfEmployees(Model theModel){
+        theModel.addAttribute("employees", employeeList);
+        return "employees";
+    }
+
+}

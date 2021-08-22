@@ -27,7 +27,8 @@ public class ProcessController {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(PROCESS_ENDPOINT, String.class);
         ObjectMapper objectMapper = new ObjectMapper();
         ProcessStartTime processStartTime = objectMapper.readValue(responseEntity.getBody(), ProcessStartTime.class);
-        LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli((long) processStartTime.getMeasurements().get(0).getValue()), ZoneId.systemDefault());
+        // LocalDateTime date = LocalDateTime.ofInstant(Instant.ofEpochMilli((long) processStartTime.getMeasurements().get(0).getValue()), ZoneId.systemDefault());
+        LocalDateTime date = Instant.ofEpochSecond((long) processStartTime.getMeasurements().get(0).getValue()).atZone(ZoneId.systemDefault()).toLocalDateTime();
 
 
         return "Server is running since :" + date;

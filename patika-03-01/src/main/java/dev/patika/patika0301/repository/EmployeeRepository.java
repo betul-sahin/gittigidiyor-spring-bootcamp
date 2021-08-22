@@ -11,6 +11,15 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee,Integer> {
 
+    // select * from employee where fullname='Ali';
+    List<Employee> findByFullName(String s);
+    List<Employee> findByFullNameContaining(String s);
+    List<Employee> findByAgeGreaterThan(int age);
+    List<Employee> findByAgeGreaterThanAndSalaryBefore(int age, double salary);
+    List<Employee> findFirst3BySalaryGreaterThan(double salary);
+
+    void deleteByFullName(String name);
+
     @Query("select count(e) from Employee e")
     int getNumberOfEmployees();
 

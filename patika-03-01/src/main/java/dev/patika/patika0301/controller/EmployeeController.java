@@ -62,4 +62,34 @@ public class EmployeeController {
         return employeeService.getAgesWithGroupingWithNativeQuery();
     }
 
+    @GetMapping("/findByName/{name}")
+    public List<Employee> getEmployeesWithName(@PathVariable String name){
+        return employeeService.getEmployeesWithName(name);
+    }
+
+    @GetMapping("/findByNameContaining/{name}")
+    public List<Employee> getEmployeesWithNameContaining(@PathVariable String name){
+        return employeeService.getEmployeesWithNameContaining(name);
+    }
+
+    @GetMapping("/findByAgeGreaterThan/{age}")
+    public List<Employee> findByAgeGreaterThan(@PathVariable int age){
+        return employeeService.findByAgeGreaterThan(age);
+    }
+
+    @GetMapping("/findByAgeGreaterThanAndSalaryBefore/{age}/{salary}")
+    public List<Employee> findByAgeGreaterThanAndSalaryBefore(@PathVariable int age, @PathVariable double salary){
+        return employeeService.findByAgeGreaterThanAndSalaryBefore(age, salary);
+    }
+
+    @GetMapping("/findFirst3BySalaryGreaterThan/{salary}")
+    public List<Employee> findFirst3BySalaryGreaterThan(@PathVariable double salary){
+        return employeeService.findFirst3BySalaryGreaterThan(salary);
+    }
+
+    @GetMapping("/deleteByFullName/{name}")
+    public String findFirst3BySalaryGreaterThan(@PathVariable String name){
+        employeeService.deleteByFullName(name);
+        return "Deleted...";
+    }
 }

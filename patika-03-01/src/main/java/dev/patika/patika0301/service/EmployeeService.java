@@ -60,4 +60,29 @@ public class EmployeeService implements BaseService<Employee>{
     public List<?> getAgesWithGroupingWithNativeQuery() {
         return repository.getAgesWithGroupingWithNativeQuery();
     }
+
+    public List<Employee> getEmployeesWithName(String name) {
+        return repository.findByFullName(name);
+    }
+
+    public List<Employee> getEmployeesWithNameContaining(String name) {
+        return repository.findByFullNameContaining(name);
+    }
+
+    public List<Employee> findByAgeGreaterThan(int age) {
+        return repository.findByAgeGreaterThan(age);
+    }
+
+    public List<Employee> findByAgeGreaterThanAndSalaryBefore(int age, double salary) {
+        return repository.findByAgeGreaterThanAndSalaryBefore(age, salary);
+    }
+
+    public List<Employee> findFirst3BySalaryGreaterThan(double salary) {
+        return repository.findFirst3BySalaryGreaterThan(salary);
+    }
+
+    @Transactional
+    public void deleteByFullName(String name) {
+        repository.deleteByFullName(name);
+    }
 }

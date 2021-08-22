@@ -10,5 +10,5 @@ public class AnimalFarm {
 
 //    Animals are equal: false
 //    Animals are equal: true
-//    false
+//    false *
 //    an exception throwns

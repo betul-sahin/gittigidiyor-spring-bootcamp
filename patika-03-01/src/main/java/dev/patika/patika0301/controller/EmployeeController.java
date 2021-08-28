@@ -2,6 +2,7 @@ package dev.patika.patika0301.controller;
 
 import dev.patika.patika0301.entity.Employee;
 import dev.patika.patika0301.service.EmployeeService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

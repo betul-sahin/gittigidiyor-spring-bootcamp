@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,10 +23,14 @@ public class EmployeeController {
 
     @PostConstruct
     private void loadData(){
+        List<String> courses = new ArrayList<>();
+        courses.add("A");
+        courses.add("B");
+        courses.add("C");
         employeeList = Arrays.asList(
-                new Employee(atomicInteger.incrementAndGet(),"Ali Veli", 36, 4343.32),
-                new Employee(atomicInteger.incrementAndGet(),"Ayşe Kaya", 26, 4643.32),
-                new Employee(atomicInteger.incrementAndGet(),"Hasan Huseyin", 45, 6743.32)
+                new Employee(atomicInteger.incrementAndGet(),"Ali Veli", 36, 4343.32, courses),
+                new Employee(atomicInteger.incrementAndGet(),"Ayşe Kaya", 26, 4643.32, courses),
+                new Employee(atomicInteger.incrementAndGet(),"Hasan Huseyin", 45, 6743.32, courses)
         );
     }
 

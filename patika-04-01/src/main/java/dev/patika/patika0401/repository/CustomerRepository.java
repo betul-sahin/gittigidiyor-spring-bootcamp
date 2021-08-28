@@ -10,7 +10,8 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     @Query("SELECT " +
             "  CASE " +
-            "   WHEN COUNT(c)>0 " +
+            "   WHEN " +
+            "       COUNT(c)>0 " +
             "   THEN " +
             "       TRUE " +
             "   ELSE " +

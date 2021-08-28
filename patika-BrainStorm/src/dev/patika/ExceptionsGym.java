@@ -2,7 +2,6 @@ package dev.patika;
 
 public class ExceptionsGym {
     public static void main(String[] args) {
-
         System.out.print("a");
         try {
             System.out.print("b");

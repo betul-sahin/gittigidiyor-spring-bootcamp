@@ -57,4 +57,12 @@ public class UserController {
         return "redirect:/index";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable int id){
+        User user = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user : " + id));
+        repository.delete(user);
+
+        return "redirect:/index";
+    }
+
 }

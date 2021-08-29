@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,4 +20,6 @@ public class Customer extends AbstractBaseEntity {
     private long ssid;
     private String email;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Wallet> wallets = new ArrayList<>();
 }

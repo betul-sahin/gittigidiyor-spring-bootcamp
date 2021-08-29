@@ -19,6 +19,7 @@ public class Wallet extends AbstractBaseEntity {
     private Currency currency;
     private LocalDate createDate;
 
-
+    @ManyToOne
+    Customer customer;
 
 }

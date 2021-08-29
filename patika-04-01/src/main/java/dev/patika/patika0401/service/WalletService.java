@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -84,4 +85,14 @@ public class WalletService {
     }
 
 
+    public Optional<List<Wallet>> getWallets(int customerId) {
+        Customer customer = this.findCustomerById(customerId);
+        Optional<List<Wallet>> wallets = Optional.of(customer.getWallets());
+
+        if (wallets.get().isEmpty()) {
+            wallets = Optional.of(walletRepository.findAll());
+        }
+
+        return wallets;
+    }
 }

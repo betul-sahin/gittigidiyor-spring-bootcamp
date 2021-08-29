@@ -1,5 +1,6 @@
 package dev.patika.patika0401.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class Customer extends AbstractBaseEntity {
     private long ssid;
     private String email;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "customer")
     private List<Wallet> wallets = new ArrayList<>();
 }

@@ -32,6 +32,7 @@ public class WalletService {
     @Autowired
     private WalletMapper walletMapper;
 
+    @Transactional
     public Optional<Wallet> save_wallet(WalletDTO walletDTO) {
         this.validateRequest(walletDTO);
         Wallet wallet = walletMapper.mapFromWalletDTOtoWallet(walletDTO);

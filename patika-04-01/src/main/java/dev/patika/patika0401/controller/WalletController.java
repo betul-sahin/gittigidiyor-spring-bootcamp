@@ -55,7 +55,12 @@ public class WalletController {
         }
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
     }
+
+
+    /*
+        Write an endpoint to get all wallets from DB (use customer id with requestparam
+        and if customer id is not exist, get all wallets with same endpoint)
+     */
 
 }

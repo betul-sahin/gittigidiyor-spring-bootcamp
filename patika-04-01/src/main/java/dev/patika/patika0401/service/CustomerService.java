@@ -7,6 +7,7 @@ import dev.patika.patika0401.model.Customer;
 import dev.patika.patika0401.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
 
+    @Transactional
     public Optional<Customer> saveCustomer(CustomerDTO customerDTO){
 
         boolean isExists = customerRepository.selectExistsSsid(customerDTO.getSsid());
@@ -38,6 +40,5 @@ public class CustomerService {
 
         return Optional.of(customerRepository.save(customer));
     }
-
 
 }

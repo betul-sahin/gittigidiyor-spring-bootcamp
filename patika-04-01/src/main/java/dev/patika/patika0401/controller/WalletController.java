@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -62,5 +63,13 @@ public class WalletController {
         Write an endpoint to get all wallets from DB (use customer id with requestparam
         and if customer id is not exist, get all wallets with same endpoint)
      */
+
+    @GetMapping("/getWallets")
+    public ResponseEntity<List<Wallet>> getWallets(@RequestParam int customerId){
+
+        Optional<List<Wallet>> wallets = walletService.getWallets(customerId);
+
+        return new ResponseEntity<>(wallets.get(), HttpStatus.OK);
+    }
 
 }

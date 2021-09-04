@@ -32,7 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.POST, SecurityConstants.LOGIN).permitAll()
-                .antMatchers(HttpMethod.POST, SecurityConstants.LOGIN_2).permitAll()
                 .antMatchers("/h2-console", "/h2-console/**","/console/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/v2/api-docs",

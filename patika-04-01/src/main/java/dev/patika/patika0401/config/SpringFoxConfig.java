@@ -1,5 +1,8 @@
 package dev.patika.patika0401.config;
 
+import com.sun.xml.internal.ws.developer.Serialization;
+import dev.patika.patika0401.Patika0401Application;
+import dev.patika.patika0401.config.annotation.DeveloperInfo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -9,6 +12,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 
+import java.lang.annotation.Annotation;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -28,12 +32,24 @@ public class SpringFoxConfig {
     }
 
     private ApiInfo apiInfo() {
+
+        final Class<Patika0401Application> patika0401ApplicationClass = Patika0401Application.class;
+        Annotation[] annotations = patika0401ApplicationClass.getAnnotations();
+        DeveloperInfo developerInfo = null;
+
+        for (Annotation annotation : annotations) {
+            if(annotation instanceof DeveloperInfo){
+                developerInfo = (DeveloperInfo) annotation;
+            }
+        }
+
         return new ApiInfo(
                 "Wallet Service REST API",
                 "Wallet Service REST API project",
                 "1.0",
                 "Terms of service",
-                new Contact("Koray Guney", "https://github.com/korayguney", "koray.guney@hotmail.com"),
+                new Contact(developerInfo.createdBy(), developerInfo.url(), developerInfo.email()),
+                //new Contact("Koray Guney", "https://github.com/korayguney", "koray.guney@hotmail.com"),
                 "License of API",
                 "API license URL",
                 Collections.emptyList());

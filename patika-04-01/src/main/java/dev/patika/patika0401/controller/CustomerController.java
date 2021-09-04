@@ -19,7 +19,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/customer")
 @RequiredArgsConstructor
-@Slf4j
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -27,7 +26,6 @@ public class CustomerController {
 
     @PostMapping("/save-customer")
     public ResponseEntity<Customer> saveCustomer(@RequestBody @Valid CustomerDTO customerdto){
-       // log.info(String.valueOf(clientRequestInfo));
         Optional<Customer> resultOptional = customerService.saveCustomer(customerdto);
         if(resultOptional.isPresent()){
             return new ResponseEntity<>(resultOptional.get(), HttpStatus.OK);

@@ -2,8 +2,13 @@ package dev.patika.patika0401.controller;
 
 import dev.patika.patika0401.dto.WalletDTO;
 import dev.patika.patika0401.model.Wallet;
+import dev.patika.patika0401.model.WalletServiceTransactionLogger;
 import dev.patika.patika0401.service.WalletService;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,5 +76,14 @@ public class WalletController {
 
         return new ResponseEntity<>(wallets.get(), HttpStatus.OK);
     }
+
+    @GetMapping("/get-transactions-by-date")
+    public ResponseEntity<Page<List<WalletServiceTransactionLogger>>> getAllTransactionsWithDate(
+            @ApiParam(value = "transaction query for wallet usage", example = "05/07/2021", required = true)
+            @RequestParam String transactionDate,
+            @PageableDefault(page = 0, size = 10) Pageable pageable){
+        return new ResponseEntity<>(this.walletService.getAllTransactionsWithDate(transactionDate, pageable), HttpStatus.OK);
+    }
+
 
 }

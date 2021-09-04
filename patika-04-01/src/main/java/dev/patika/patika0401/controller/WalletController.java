@@ -6,6 +6,8 @@ import dev.patika.patika0401.model.WalletServiceTransactionLogger;
 import dev.patika.patika0401.service.WalletService;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -13,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -81,8 +84,10 @@ public class WalletController {
     public ResponseEntity<Page<List<WalletServiceTransactionLogger>>> getAllTransactionsWithDate(
             @ApiParam(value = "transaction query for wallet usage", example = "05/07/2021", required = true)
             @RequestParam String transactionDate,
+            @RequestParam(required = false) Integer pageNumber,
+            @RequestParam(required = false) Integer pageSize,
             @PageableDefault(page = 0, size = 10) Pageable pageable){
-        return new ResponseEntity<>(this.walletService.getAllTransactionsWithDate(transactionDate, pageable), HttpStatus.OK);
+        return new ResponseEntity<>(this.walletService.getAllTransactionsWithDate(transactionDate, pageNumber, pageSize, pageable), HttpStatus.OK);
     }
 
 

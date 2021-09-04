@@ -20,7 +20,9 @@ import dev.patika.patika0401.util.WalletValidatorUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -131,10 +133,13 @@ public class WalletService {
         return wallets;
     }
 
-    public Page<List<WalletServiceTransactionLogger>> getAllTransactionsWithDate(String transactionDate, Pageable pageable) {
+    public Page<List<WalletServiceTransactionLogger>> getAllTransactionsWithDate(String transactionDate, Integer page, Integer size, Pageable pageable) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         WalletValidatorUtil.validateTransactionDate(transactionDate, formatter);
         LocalDate transactionDateResult = LocalDate.parse(transactionDate, formatter);
+        if(page != null && size != null){
+            pageable = PageRequest.of(page, size);
+        }
         return this.transactionLoggerRepository.findAllTransactionByTransactionDate(transactionDateResult, pageable);
     }
 }

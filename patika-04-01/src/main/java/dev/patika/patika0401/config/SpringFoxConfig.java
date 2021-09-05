@@ -1,6 +1,5 @@
 package dev.patika.patika0401.config;
 
-import com.sun.xml.internal.ws.developer.Serialization;
 import dev.patika.patika0401.Patika0401Application;
 import dev.patika.patika0401.config.annotation.DeveloperInfo;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +31,7 @@ public class SpringFoxConfig {
     }
 
     private ApiInfo apiInfo() {
-
+        /** we use reflection api to access annotations at runtime **/
         final Class<Patika0401Application> patika0401ApplicationClass = Patika0401Application.class;
         Annotation[] annotations = patika0401ApplicationClass.getAnnotations();
         DeveloperInfo developerInfo = null;

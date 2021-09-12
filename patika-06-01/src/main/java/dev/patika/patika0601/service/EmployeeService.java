@@ -18,12 +18,18 @@ public class EmployeeService {
 
     public void addEmployee(Employee employee) {
         // TO-DO check if employee exists???
-        repository.save(employee);
+        if(!repository.existsByEmail(employee.getEmail())){
+            repository.save(employee);
+        }
+
     }
 
     public void deleteEmployee(Long employeeId) {
         // TO-DO check if employee exists with given ID???
-        repository.deleteById(employeeId);
+        if(repository.existsById(employeeId)){
+            repository.deleteById(employeeId);
+        }
+
 
     }
 }

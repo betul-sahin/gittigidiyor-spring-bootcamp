@@ -20,6 +20,8 @@ public class EmployeeService {
         // TO-DO check if employee exists???
         if(!repository.existsByEmail(employee.getEmail())){
             repository.save(employee);
+        }else{
+            throw  new RuntimeException("Employee is already exist!");
         }
 
     }
@@ -28,6 +30,8 @@ public class EmployeeService {
         // TO-DO check if employee exists with given ID???
         if(repository.existsById(employeeId)){
             repository.deleteById(employeeId);
+        }else{
+            throw new RuntimeException("Id is not found");
         }
 
 

@@ -5,6 +5,7 @@ import dev.patika.patika0601.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public void addEmployee(@RequestBody Employee employee){
+    public void addEmployee(@Valid @RequestBody Employee employee){
         service.addEmployee(employee);
     }
 

@@ -29,5 +29,8 @@
   MAC/LINUX;
   `docker run --name db -p 5432:5432 --network=db -v "%PWD%:/var/lib/postgresql/data" -e POSTGRES_PASSWORD=password -d postgres:alpine`
 
-* To connect Postgres Docker Container via psql; 
+* To connect local Postgres Docker Container via psql; 
 ` docker run -it --rm --network=db postgres:alpine psql -h db -U postgres`
+  
+* To connect AWS RDS Postgres Docker Container via psql (change host(-h) name according to your RDS Postgres endpoint)
+`docker run -it --rm postgres:alpine psql -h aan61u4bd2lolr.cxwdf9twl8id.eu-central-1.rds.amazonaws.com -U korayguney -d postgres`

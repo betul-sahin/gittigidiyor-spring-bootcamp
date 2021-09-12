@@ -19,3 +19,15 @@
 
 * To build Docker image with JIB plugin; `mvn clean install jib:dockerBuild -Djib.to.image=fullstack:v1`
 * To push Docker image to Docker hub via JIB plugin; `mvn clean install -P jib-push-to-dockerhub -Dapp.image.tag=v2`
+
+## Postgres 
+* To create network; 
+  `docker network create db`
+* Initialize a Postgres Docker ; 
+  WINDOWS;
+  `docker run --name db -p 5432:5432 --network=db -v "%cd%:/var/lib/postgresql/data" -e POSTGRES_PASSWORD=password -d postgres:alpine`
+  MAC/LINUX;
+  `docker run --name db -p 5432:5432 --network=db -v "%PWD%:/var/lib/postgresql/data" -e POSTGRES_PASSWORD=password -d postgres:alpine`
+
+* To connect Postgres Docker Container via psql; 
+` run -it --rm --network=db postgres:alpine psql -h db -U postgres`

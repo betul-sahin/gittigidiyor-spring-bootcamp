@@ -178,7 +178,7 @@ function App() {
                         </Button>
                     </>
                 }
-                pagination={{pageSize: 50}}
+                pagination={{pageSize: 20}}
                 scroll={{y: 500}}
                 rowKey={employee => employee.id}
             />

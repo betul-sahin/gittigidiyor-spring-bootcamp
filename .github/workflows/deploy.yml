@@ -72,18 +72,18 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: ':white_check_mark: pushed korayguney/bilgeadam-fullstack:${{steps.build-number.outputs.BUILD_NUMBER}} to docker hub... https://hub.docker.com/repository/docker/korayguney/bilgeadam-fullstack'
+          text: ':white_check_mark: pushed korayguney/gittigidiyor-fullstack:${{steps.build-number.outputs.BUILD_NUMBER}} to docker hub... https://hub.docker.com/repository/docker/korayguney/kodluyoruz-fullstack'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update and commit app version in docker-compose.yaml
         run: |
           BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
-          echo -e "Current elasticbeanstalk/docker-compose.yml\n$(cat elasticbeanstalk/docker-compose.yml)"
-          sed -i -E 's_(korayguney/bilgeadam-fullstack:)([^"]*)_\1'${BUILD_NUMBER}'_' elasticbeanstalk/docker-compose.yml
-          echo -e "Current elasticbeanstalk/docker-compose.yml\n$(cat elasticbeanstalk/docker-compose.yml)"
+          echo -e "Current patika06-01/elasticbeanstalk/docker-compose.yml\n$(cat patika06-01/elasticbeanstalk/docker-compose.yml)"
+          sed -i -E 's_(korayguney/gittigidiyor-fullstack:)([^"]*)_\1'${BUILD_NUMBER}'_' patika06-01/elasticbeanstalk/docker-compose.yml
+          echo -e "Current patika06-01/elasticbeanstalk/docker-compose.yml\n$(cat patika06-01/elasticbeanstalk/docker-compose.yml)"
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add elasticbeanstalk/docker-compose.yml
+          git add patika06-01/elasticbeanstalk/docker-compose.yml
           git commit -m "new app version: ${BUILD_NUMBER}"
           git push
 
@@ -110,7 +110,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: ':tada: :arrow_right: http://bilgeadamfullstack-env.eba-v8pucqtm.eu-central-1.elasticbeanstalk.com/'
+          text: ':tada: :arrow_right: http://kodluyoruz.eu-central-1.elasticbeanstalk.com/'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()

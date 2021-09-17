@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [ feature/aws-2 , feature/aws-2-2 ]
+    branches: [ feature/aws-2 ]
 
   workflow_dispatch:
 

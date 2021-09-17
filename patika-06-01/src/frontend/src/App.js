@@ -223,8 +223,8 @@ function App() {
             </Content>
             <Footer style={{textAlign: 'center'}}>
                 <Image
-                    width={275}
-                    src="https://app.patika.dev/patikaLogo.png"
+                    width={175}
+                    src="https://user-images.githubusercontent.com/25553787/133824663-6e542ffd-3435-4160-8942-7c901ffc6486.png"
                 />
                 <Divider>
                     <a

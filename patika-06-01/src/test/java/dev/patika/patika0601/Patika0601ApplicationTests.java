@@ -9,7 +9,7 @@ class Patika0601ApplicationTests {
 
     @Test
     void contextLoads() {
-        Assertions.fail("There is an ERROR !!!");
+        // Assertions.fail("There is an ERROR !!!");
     }
 
 }

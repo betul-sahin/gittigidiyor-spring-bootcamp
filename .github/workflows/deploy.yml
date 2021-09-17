@@ -36,13 +36,13 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
+      - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
           text: 'CICD ongoing... :eyes:'
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - uses: actions/checkout@v2
 
@@ -67,13 +67,13 @@ jobs:
             -P build-frontend \
             -P jib-push-to-dockerhub \
               -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
-      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
+      - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
           text: ':white_check_mark: pushed korayguney/bilgeadam-fullstack:${{steps.build-number.outputs.BUILD_NUMBER}} to docker hub... https://hub.docker.com/repository/docker/korayguney/bilgeadam-fullstack'
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update and commit app version in docker-compose.yaml
         run: |
           BUILD_NUMBER=${{steps.build-number.outputs.BUILD_NUMBER}}
@@ -86,13 +86,13 @@ jobs:
           git commit -m "new app version: ${BUILD_NUMBER}"
           git push
 
-      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
+      - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
           text: ':elasticbeanstalk: :aws: Deployment started... :grimacing: :crossed_fingers:'
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v16
         with:
@@ -105,11 +105,11 @@ jobs:
           version_label: ${{ steps.build-number.outputs.BUILD_NUMBER }}
           version_description: Version ${{steps.build-number.outputs.BUILD_NUMBER}} deployed via github actions ${{ github.sha }}
           wait_for_deployment: false
-      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
+      - uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
           text: ':tada: :arrow_right: http://bilgeadamfullstack-env.eba-v8pucqtm.eu-central-1.elasticbeanstalk.com/'
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()

@@ -36,7 +36,7 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      - uses: Ilshidur/action-discord@99b3d92
+      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
@@ -67,7 +67,7 @@ jobs:
             -P build-frontend \
             -P jib-push-to-dockerhub \
               -Dapp.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}}
-      - uses: Ilshidur/action-discord@99b3d92
+      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
@@ -86,7 +86,7 @@ jobs:
           git commit -m "new app version: ${BUILD_NUMBER}"
           git push
 
-      - uses: Ilshidur/action-discord@99b3d92
+      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
@@ -105,7 +105,7 @@ jobs:
           version_label: ${{ steps.build-number.outputs.BUILD_NUMBER }}
           version_description: Version ${{steps.build-number.outputs.BUILD_NUMBER}} deployed via github actions ${{ github.sha }}
           wait_for_deployment: false
-      - uses: Ilshidur/action-discord@99b3d92
+      - uses: Ilshidur/action-discord@99b3d928867937d16b8c9a7d3b5db5c59f499f6c
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took

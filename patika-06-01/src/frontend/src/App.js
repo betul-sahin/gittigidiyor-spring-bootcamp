@@ -231,7 +231,7 @@ function App() {
                         rel="noopener noreferrer"
                         target="_blank"
                         href="https://github.com/korayguney/gittigidiyor-spring-bootcamp">
-                        Click here to access Gittigidiyor Spring Bootcamp Github Repository
+                        Click here ---> to access Gittigidiyor Spring Bootcamp Github Repository
                     </a>
                 </Divider>
             </Footer>

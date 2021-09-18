@@ -30,4 +30,9 @@ public class Employee {
     @Column(nullable = false)
     private Gender gender;
 
+    public Employee(@NotBlank String name, @NotBlank @Email String email, @NotNull Gender gender) {
+        this.name = name;
+        this.email = email;
+        this.gender = gender;
+    }
 }
